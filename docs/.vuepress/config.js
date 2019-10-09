@@ -1,10 +1,10 @@
 module.exports = {
   title: "Vue",
-  description: "🚀 持续构建",
+  description: "🚀 Vue 学习笔记",
   base: "/notebook-vue/",
   head: [["link", { rel: "icon", href: "/favicon.ico" }]],
   themeConfig: {
-    repo: "Jolylai/notebook-devops",
+    repo: "Jolylai/notebook-vue",
     nav: require("./nav/zh"),
     sidebar: require("./siderbar/index"),
     lastUpdated: "上次更新"
