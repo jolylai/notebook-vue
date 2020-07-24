@@ -1,20 +1,16 @@
 # Vue.directive
 
-## 钩子函数
-
-### 生命周期
+## 生命周期
 
 ```js
-Vue.directive("color", {
+Vue.directive('color', {
   bind() {},
   inserted() {},
   update() {},
   componentUpdated() {},
-  unbind() {}
+  unbind() {},
 });
 ```
-
-::: tip
 
 - `bind`：只调用一次，指令第一次绑定到元素时调用。在这里可以进行一次性的初始化设置。
 
@@ -26,8 +22,6 @@ Vue.directive("color", {
 
 - `unbind`：只调用一次，指令与元素解绑时调用。
 
-:::
-
 ## 参数
 
 HTML 与 JS 之间的通讯
@@ -37,8 +31,8 @@ HTML 与 JS 之间的通讯
 ```
 
 ```js
-Vue.directive("demo", {
-  bind: function(el, binding, vnode) {}
+Vue.directive('demo', {
+  bind: function(el, binding, vnode) {},
 });
 ```
 
@@ -68,22 +62,22 @@ v-name:arg.modifiers=expression
 ```
 
 ```js
-Vue.directive("pin", {
+Vue.directive('pin', {
   bind: function(el, binding, vnode) {
-    el.style.position = "fixed";
+    el.style.position = 'fixed';
     // binding.arg 获取动态指令参数
-    var s = binding.arg == "left" ? "left" : "top";
-    el.style[s] = binding.value + "px";
-  }
+    var s = binding.arg == 'left' ? 'left' : 'top';
+    el.style[s] = binding.value + 'px';
+  },
 });
 
 new Vue({
-  el: "#dynamicexample",
+  el: '#dynamicexample',
   data: function() {
     return {
-      direction: "left"
+      direction: 'left',
     };
-  }
+  },
 });
 ```
 
@@ -96,7 +90,7 @@ new Vue({
 ```
 
 ```js
-Vue.directive("demo", function(el, binding) {
+Vue.directive('demo', function(el, binding) {
   console.log(binding.value.color); // => "white"
   console.log(binding.value.text); // => "hello!"
 });
@@ -107,7 +101,7 @@ Vue.directive("demo", function(el, binding) {
 在很多时候，你可能想在 bind 和 update 时触发相同行为，而不关心其它的钩子。
 
 ```js
-Vue.directive("color", function(el, binding, vnode) {
+Vue.directive('color', function(el, binding, vnode) {
   el.style = `color: ${binding.value}`;
 });
 ```
@@ -125,14 +119,14 @@ Vue.directive("color", function(el, binding, vnode) {
       <div v-color="color">Color</div>
     </div>
     <script type="text/javascript">
-      Vue.directive("color", function(el, binding, vnode) {
+      Vue.directive('color', function(el, binding, vnode) {
         el.style = `color: ${binding.value}`;
       });
       const app = new Vue({
-        el: "#app",
+        el: '#app',
         data: {
-          color: "red"
-        }
+          color: 'red',
+        },
       });
     </script>
   </body>

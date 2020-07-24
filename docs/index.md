@@ -1,6 +1,6 @@
 ---
 hero:
-  title: notebook-vue
+  title: Vue
   desc: notebook-vue site example
   actions:
     - text: Getting Started
