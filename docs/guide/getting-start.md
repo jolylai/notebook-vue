@@ -1,11 +1,6 @@
----
-order: 1
-nav:
-  title: 指南
-  order: 1
----
+# 快速开始
 
-## 快速开始
+> [Vue Cli](https://cli.vuejs.org/zh/)
 
 ```shell
 npm install -g @vue/cli
