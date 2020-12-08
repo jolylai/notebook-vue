@@ -7,10 +7,10 @@ module.exports = [
   //   text: '中台',
   //   link: '/admin/',
   // },
-  {
-    text: '源码',
-    link: '/core/getting-start'
-  },
+  // {
+  //   text: '源码',
+  //   link: '/core/getting-start'
+  // },
   // {
   //   text: '路由',
   //   link: '/router/getting-start',
@@ -20,7 +20,7 @@ module.exports = [
   //   link: '/vuex/getting-start',
   // },
   {
-    text: '实战',
-    link: '/component/quickstart'
+    text: 'Element3',
+    link: '/element3/quickstart'
   }
 ]

@@ -15,7 +15,7 @@ module.exports = ctx => ({
     sidebar: {
       '/guide/': sidebar.guide,
       // '/router/': require('./sidebar/router'),
-      '/component/': sidebar.component
+      '/element3/': sidebar.element3
     }
   },
   plugins: [

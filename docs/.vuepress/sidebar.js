@@ -5,6 +5,11 @@ module.exports = {
       title: '实例',
       collapsable: false,
       children: ['/guide/instance', '/guide/directive', '/guide/plugin']
+    },
+    {
+      title: '深入组件',
+      collapsable: false,
+      children: ['/guide/props']
     }
   ],
   core: [
@@ -29,14 +34,15 @@ module.exports = {
       children: ['/core/ecology/vuex']
     }
   ],
-  component: [
+  element3: [
     {
       title: '开发指南',
       collapsable: false,
       children: [
-        '/component/quickstart',
-        '/component/standard',
-        '/component/table'
+        '/element3/guide',
+        '/element3/quickstart',
+        '/element3/standard',
+        '/element3/table'
       ]
     }
   ]
