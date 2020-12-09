@@ -1,6 +1,6 @@
 # 快速开始
 
-> [Vue Cli](https://cli.vuejs.org/zh/)
+- [Vue3](https://coding.imooc.com/class/chapter/472.html#Anchor)
 
 ```shell
 npm install -g @vue/cli
@@ -11,12 +11,4 @@ yarn global add @vue/cli
 vue create my-project
 # OR
 vue ui
-```
-
-## Element UI
-
-安装 Element 组件库
-
-```shell
-yarn add element-ui
 ```

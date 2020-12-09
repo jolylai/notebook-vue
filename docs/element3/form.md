@@ -1,5 +1,5 @@
 ---
-title: 表单
+title: Form
 ---
 
 ## 思考
@@ -46,3 +46,71 @@ layout 布局 适合用于填写字段比较多的表单中
 ```
 
 ## 效验
+
+表单页用于向用户收集或验证信息
+
+## 基础表单
+
+基础表单常见于数据项较少的表单场景。
+
+```vue
+<template>
+  <a-form>
+    <a-form-item label="Input">
+      <a-input v-model:value="form.region" placeholder="please input!" />
+    </a-form-item>
+  </a-form>
+</template>
+
+<script>
+import { reactive } from 'vue'
+
+export default {
+  setup() {
+    const form = reactive({})
+
+    return {
+      form
+    }
+  }
+}
+</script>
+```
+
+### 表单初始化
+
+```vue
+<template>
+  <a-form>
+    <a-form-item label="Input">
+      <a-input v-model:value="form.region" placeholder="please input!" />
+    </a-form-item>
+  </a-form>
+</template>
+
+<script>
+import { reactive } from 'vue'
+
+export default {
+  setup() {
+    const data = reactive({
+      form: {}
+    })
+
+    return {
+      form
+    }
+  }
+}
+</script>
+```
+
+### 表单效验
+
+[async-validator](https://github.com/yiminghe/async-validator)
+
+## 分步表单
+
+## 高级表单
+
+### 表单初始化 ？？？

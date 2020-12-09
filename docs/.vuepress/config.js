@@ -1,7 +1,7 @@
 const sidebar = require('./sidebar')
 
 module.exports = ctx => ({
-  title: 'Vue Notebook',
+  title: 'Vue',
   description: 'Vue 学习笔记',
   themeConfig: {
     repo: 'jolylai/notebook-vue',
@@ -14,7 +14,7 @@ module.exports = ctx => ({
     nav: require('./nav'),
     sidebar: {
       '/guide/': sidebar.guide,
-      // '/router/': require('./sidebar/router'),
+      '/core/': sidebar.core,
       '/element3/': sidebar.element3
     }
   },

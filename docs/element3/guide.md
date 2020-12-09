@@ -10,7 +10,7 @@ title: 初识 Element3
 
 ## 前言
 
-`Element3` 是基于 `Vue 3.0` 开发的组件库
+`Element3` 是基于 `Vue 3.0` 开发的组件库, 如果你还没了解 `Vue 3.0`新特性，
 
 `Element UI` 组件库在使用 `Vue2`为技术栈的开发者中有着
 

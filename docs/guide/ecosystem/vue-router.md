@@ -1,4 +1,8 @@
-# 快速开始
+---
+title: Vue Router
+---
+
+## 快速开始
 
 安装 `vue-router`
 
@@ -56,4 +60,35 @@ export default {
   name: 'App'
 }
 </script>
+```
+
+## 面包屑
+
+```js
+const router = new VueRouter({
+  routes: [
+    {
+      path: '/user',
+      component: Layout,
+      name: 'User',
+      meta: {
+        title: 'User'
+      },
+      children: [
+        {
+          path: 'list',
+          component: () => import('@/views/user/list'),
+          name: 'List',
+          meta: { title: 'List' }
+        },
+        {
+          path: 'detail/:id',
+          component: () => import('@/views/user/detail'),
+          name: 'Detail',
+          meta: { title: 'Detail' }
+        }
+      ]
+    }
+  ]
+})
 ```
