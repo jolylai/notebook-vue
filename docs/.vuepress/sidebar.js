@@ -32,6 +32,7 @@ module.exports = {
       title: 'Composition API',
       collapsable: false,
       children: [
+        '/guide/composition/reactive',
         '/guide/composition/setup',
         '/guide/composition/ref',
         '/guide/composition/computed',
@@ -39,17 +40,25 @@ module.exports = {
         '/guide/composition/watchEffect',
         '/guide/composition/provide&inject'
       ]
-    },
+    }
+    // {
+    //   title: '生态系统',
+    //   collapsable: false,
+    //   children: [
+    //     '/guide/ecosystem/vue-cli',
+    //     '/guide/ecosystem/vue-router',
+    //     '/guide/ecosystem/vuex'
+    //   ]
+    // }
+  ],
+  ecosystem: [
     {
-      title: '生态系统',
+      title: 'Vue Router',
       collapsable: false,
-      children: [
-        '/guide/ecosystem/vue-cli',
-        '/guide/ecosystem/vue-router',
-        '/guide/ecosystem/vuex'
-      ]
+      children: ['/ecosystem/router/quickstart']
     }
   ],
+  admin: ['/admin/quickstart', '/admin/standard'],
   core: [
     {
       title: '阅前必读',

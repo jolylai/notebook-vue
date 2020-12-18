@@ -14,6 +14,8 @@ module.exports = ctx => ({
     nav: require('./nav'),
     sidebar: {
       '/guide/': sidebar.guide,
+      '/ecosystem/': sidebar.ecosystem,
+      '/admin/': sidebar.admin,
       '/core/': sidebar.core,
       '/element3/': sidebar.element3
     }

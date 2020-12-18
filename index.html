@@ -5,22 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.0.2/vue.esm-bundler.min.js"></script> -->
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.0.2/vue.esm-browser.prod.js"></script> -->
     <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.0.2/vue.global.prod.js"></script>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vue-router/4.0.0-rc.1/vue-router.esm-browser.min.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue-router/4.0.0-rc.1/vue-router.global.prod.js"></script>
   </head>
   <body>
-    <div id="app"></div>
-    <script>
-      const obj = { a: 1 }
-      const handlers = {
+    <div id="app">
+      <p>
+        <!-- use the router-link component for navigation. -->
+        <!-- specify the link by passing the `to` prop. -->
+        <!-- `<router-link>` will render an `<a>` tag with the correct `href` attribute -->
+        <router-link to="/">Go to Home</router-link>
+        <router-link to="/about">Go to About</router-link>
+      </p>
+      <!-- route outlet -->
+      <!-- component matched by the route will render here -->
+      <router-view></router-view>
+    </div>
+    <!-- <script>
+      const origin = { arr: [] }
+      const proxy = new Proxy(origin, {
+        get: function(target, key, context) {
+          console.log('get')
+          return Reflect.get(target, key)
+        },
+        set: function(target, key, value) {
+          console.log('set')
+          Reflect.set(target, key, value)
+        }
+      })
+
+      console.log('proxy.a: ', proxy.arr.push(1))
+      console.log(proxy.arr)
+    </script> -->
+    <!-- <script>
+      const obj = { foo: 1, bar() {} }
+      const fun = () => {}
+      const handler = {
         get(target, key, context) {
-          console.log({ target, key, context })
-          return target[key]
+          console.log('target: get', { target, key, context })
+          return Reflect.get(target, key)
+        },
+        set(target, key, value, context) {
+          console.log('args: set', { target, key, value, context })
+        },
+        deleteProperty(target, key) {
+          console.log('args: deleteProperty', { target, key })
+        },
+        apply(target, that, args) {
+          console.log('args: apply', { target, that, args })
         }
       }
 
-      const pobj = new Proxy(obj, handlers)
-      obj.a
-      pobj.a
-    </script>
+      const proxy = new Proxy(fun, handler)
+      // console.log('proxy: ', proxy)
+
+      proxy(1, 2)
+    </script> -->
+    <!-- <script type="module">
+      import {
+        reactive,
+        createApp
+      } from 'https://cdn.bootcdn.net/ajax/libs/vue/3.0.2/vue.esm-browser.prod.js'
+
+      const app = createApp({
+        setup() {
+          const state = reactive({ count: 0 })
+
+          const original = { foo: 1 }
+          console.log('original: ', original)
+          const observed = reactive(original)
+          console.log('observed: ', observed)
+
+          return { state }
+        }
+      })
+
+      app.mount('#app')
+    </script> -->
   </body>
 </html>

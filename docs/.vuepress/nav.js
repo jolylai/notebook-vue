@@ -4,8 +4,16 @@ module.exports = [
     link: '/guide/basic/getting-start'
   },
   {
+    text: '生态系统',
+    link: '/ecosystem/router/quickstart'
+  },
+  {
     text: 'Element3',
     link: '/element3/quickstart'
+  },
+  {
+    text: '后台管理系统',
+    link: '/admin/quickstart'
   }
   // {
   //   text: 'Vue源码',
