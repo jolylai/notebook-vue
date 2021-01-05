@@ -5,6 +5,22 @@ title: Table
 - 搜索重置布局
 - 搜索栏初始值
 
+## Todo
+
+- 点击键盘 Enter 按键自动搜索
+
+## Columns
+
+```js
+const columns = [
+  {
+    title: '手机号',
+    dataIndex: 'mobile',
+    width: 120
+  }
+]
+```
+
 ## 何时使用
 
 - 当有大量结构化的数据需要展现时；

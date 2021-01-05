@@ -55,7 +55,7 @@ module.exports = {
     {
       title: 'Vue Router',
       collapsable: false,
-      children: ['/ecosystem/router/quickstart']
+      children: ['/ecosystem/router/quickstart', '/ecosystem/router/permission']
     }
   ],
   admin: ['/admin/quickstart', '/admin/standard'],
