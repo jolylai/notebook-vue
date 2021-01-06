@@ -20,6 +20,9 @@ module.exports = ctx => ({
       '/element3/': sidebar.element3
     }
   },
+  markdown: {
+    lineNumbers: true
+  },
   plugins: [
     ['@vuepress/back-to-top', true],
     [

@@ -53,9 +53,9 @@ module.exports = {
   ],
   ecosystem: [
     {
-      title: 'Vue Router',
+      title: '后台管理',
       collapsable: false,
-      children: ['/ecosystem/router/quickstart', '/ecosystem/router/permission']
+      children: ['/ecosystem/quickstart', '/ecosystem/permission']
     }
   ],
   admin: ['/admin/quickstart', '/admin/standard'],

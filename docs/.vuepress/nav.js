@@ -5,7 +5,7 @@ module.exports = [
   },
   {
     text: '生态系统',
-    link: '/ecosystem/router/quickstart'
+    link: '/ecosystem/quickstart'
   },
   {
     text: 'Element3',
