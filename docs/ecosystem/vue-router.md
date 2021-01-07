@@ -3,7 +3,7 @@ title: Vue Router
 ---
 
 - [vue-router-next](https://github.com/vuejs/vue-router-next)
-- [](https://next.router.vuejs.org/guide/essentials/history-mode.html#hash-mode)
+- [history-mode](https://next.router.vuejs.org/guide/essentials/history-mode.html#hash-mode)
 
 ## 快速开始
 

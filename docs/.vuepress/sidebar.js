@@ -55,7 +55,11 @@ module.exports = {
     {
       title: '后台管理',
       collapsable: false,
-      children: ['/ecosystem/quickstart', '/ecosystem/permission']
+      children: [
+        '/ecosystem/quickstart',
+        '/ecosystem/permission',
+        '/ecosystem/vue-router'
+      ]
     }
   ],
   admin: ['/admin/quickstart', '/admin/standard'],
