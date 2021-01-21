@@ -10,13 +10,13 @@ module.exports = [
   {
     text: 'Element3',
     link: '/element3/quickstart'
-  }
+  },
   // {
   //   text: '后台管理系统',
   //   link: '/admin/quickstart'
   // }
-  // {
-  //   text: 'Vue源码',
-  //   link: '/core/getting-start'
-  // }
+  {
+    text: 'Vue源码',
+    link: '/core/getting-start'
+  }
 ]

@@ -82,7 +82,7 @@ module.exports = {
     {
       title: '虚拟DOM',
       collapsable: false,
-      children: ['/core/ecology/vuex']
+      children: ['/core/virtual-dom/overview', '/core/virtual-dom/diff']
     },
     {
       title: '实例方法',
