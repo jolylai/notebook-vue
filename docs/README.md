@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: https://cy-picgo.oss-cn-hangzhou.aliyuncs.com/desktop.jpg
+# heroImage: https://cy-picgo.oss-cn-hangzhou.aliyuncs.com/desktop.jpg
 actionText: Get Started →
 actionLink: /guide/basic/getting-start
 footer: Copyright © 2020-present

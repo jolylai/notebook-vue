@@ -1,5 +1,7 @@
 import { hasOwnProperty } from './utils'
 
+const targetMap = new Map()
+
 function createGetter() {
   return function get(target, key, receiver) {
     const result = Reflect.get(target, key, receiver)
@@ -25,7 +27,19 @@ function createSetter() {
   }
 }
 
-export const baseHandler = {
+function track(target, key) {
+  let depsMap = targetMap.get(target)
+  if (!depsMap) {
+    targetMap.set(target, (depsMap = new Map()))
+  }
+
+  let dep = depsMap.get(key)
+  if (!dep) {
+    depsMap.set(key, (dep = new Set()))
+  }
+}
+
+export const mutableHandlers = {
   get: createGetter(),
   set: createSetter()
 }
