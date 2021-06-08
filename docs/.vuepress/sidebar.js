@@ -14,7 +14,8 @@ module.exports = {
         '/guide/component/lifecycle',
         '/guide/component/data',
         '/guide/component/slot',
-        '/guide/component/instance'
+        '/guide/component/instance',
+        '/guide/component/async-components'
       ]
     },
     {
@@ -77,7 +78,7 @@ module.exports = {
     {
       title: '模板编译',
       collapsable: false,
-      children: ['/core/template/slot']
+      children: ['/core/template/overview', '/core/template/slot']
     },
     {
       title: '虚拟DOM',

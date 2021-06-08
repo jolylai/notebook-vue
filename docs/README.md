@@ -12,16 +12,11 @@ footer: Copyright © 2020-present
     <p>Vue3.0 新特性</p>
   </div>
   <div class="feature">
-    <h2>TypeScript</h2>
-    <p>进入类型的世界</p>
+    <h2>Template</h2>
+    <p>模板编译</p>
   </div>
   <div class="feature">
     <h2>Jest</h2>
     <p>了解测试的生态系统</p>
   </div>
 </div>
-
-## TODO
-
-- ProTable
-- 文件导出
