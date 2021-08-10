@@ -15,11 +15,26 @@ module.exports = {
       {
         text: '指南',
         link: '/guide/basic/getting-start',
-        activeMatch: '^/$|^/guide/'
+        activeMatch: '^/guide/'
+      },
+      {
+        text: 'Vue Router',
+        link: '/router/tokenizer',
+        activeMatch: '^/vue-route/'
       }
     ],
     sidebar: {
-      '/guide/': sidebar.guide
+      '/guide/': sidebar.guide,
+      '/router/': [
+        {
+          text: '配置器',
+          collapsable: false,
+          children: [
+            { text: 'Token', link: '/router/tokenizer/' },
+            { text: 'Router Matcher', link: '/router/matcher/' }
+          ]
+        }
+      ]
       // '/ecosystem/': sidebar.ecosystem,
       // '/admin/': sidebar.admin,
       // '/core/': sidebar.core,
@@ -27,6 +42,6 @@ module.exports = {
     }
   },
   markdown: {
-    lineNumbers: true
+    lineNumbers: false
   }
 }

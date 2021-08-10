@@ -1,11 +1,7 @@
----
-title: Vue Router
----
+## 快速开始
 
 - [vue-router-next](https://github.com/vuejs/vue-router-next)
 - [history-mode](https://next.router.vuejs.org/guide/essentials/history-mode.html#hash-mode)
-
-## 快速开始
 
 安装 `vue-router`
 
@@ -124,4 +120,10 @@ const router = new VueRouter({
     }
   ]
 })
+```
+
+## createRouter
+
+```js
+function addRoute(parentOrRoute) {}
 ```

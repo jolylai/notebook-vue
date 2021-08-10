@@ -1,3 +1,0 @@
----
-title: Provide & Inject
----

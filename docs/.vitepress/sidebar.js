@@ -25,7 +25,7 @@ module.exports = {
         { text: 'Teleport', link: '/guide/advance/teleport' },
         { text: 'Mixin', link: '/guide/advance/mixin' },
         { text: 'Directive', link: '/guide/advance/directive' },
-        { text: 'Render', link: '/guide/advance/render' },
+        { text: 'Render', link: '/guide/advance/render/index' },
         { text: 'Plugin', link: '/guide/advance/plugin' }
       ]
     },
@@ -39,7 +39,7 @@ module.exports = {
         { text: 'Computed', link: '/guide/composition/computed' },
         { text: 'Watch', link: '/guide/composition/watch' },
         { text: 'WatchEffect', link: '/guide/composition/watchEffect' },
-        { text: 'Provide', link: '/guide/composition/provide&inject' }
+        { text: 'Provide', link: '/guide/composition/provide&inject/index' }
       ]
     },
     {
@@ -50,6 +50,18 @@ module.exports = {
         { text: 'Router', link: '/guide/ecosystem/vue-router' },
         { text: 'Vuex', link: '/guide/ecosystem/vuex' }
       ]
+    }
+  ],
+  router: [
+    {
+      text: '配置器',
+      collapsable: false,
+      children: [{ text: 'Token', link: '/router/matcher/tokenizer' }]
+    },
+    {
+      text: '深入组件',
+      collapsable: false,
+      children: [{ text: '快速开始', link: '/router/matcher/tokenizer' }]
     }
   ],
   ecosystem: [
