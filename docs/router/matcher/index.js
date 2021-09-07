@@ -7,6 +7,7 @@ export function createRouterMatcher(routes, globalOptions) {
    */
   function addRoute(record, parent, originalRecord) {
     const normalizedRecords = [record]
+
     for (let normalizedRecord of normalizedRecords) {
       // create the object before hand so it can be passed to children
       matcher = createRouteRecordMatcher(normalizedRecord, parent, options)
@@ -15,3 +16,5 @@ export function createRouterMatcher(routes, globalOptions) {
 
   return
 }
+
+export function createRouteRecordMatcher(record, parent, options) {}

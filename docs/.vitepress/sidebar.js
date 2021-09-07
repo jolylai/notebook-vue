@@ -3,7 +3,10 @@ module.exports = {
     {
       text: '基础',
       collapsable: false,
-      children: [{ text: '快速开始', link: '/guide/basic/getting-start' }]
+      children: [
+        { text: '快速开始', link: '/guide/basic/getting-start' },
+        { text: '样式与', link: '/guide/basic/getting-start' }
+      ]
     },
     {
       text: '深入组件',
