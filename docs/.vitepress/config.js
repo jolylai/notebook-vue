@@ -1,5 +1,3 @@
-const sidebar = require('./sidebar')
-
 const vue3 = [
   {
     text: '基础',
@@ -97,6 +95,17 @@ const core = [
   // }
 ]
 
+const router = [
+  {
+    text: '配置器',
+    collapsable: false,
+    children: [
+      { text: 'Token', link: '/router/tokenizer/' },
+      { text: 'Router Matcher', link: '/router/matcher/' }
+    ]
+  }
+]
+
 module.exports = {
   title: 'Vue',
   description: 'Vue 学习笔记',
@@ -127,16 +136,7 @@ module.exports = {
     ],
     sidebar: {
       '/vue3/': vue3,
-      '/router/': [
-        {
-          text: '配置器',
-          collapsable: false,
-          children: [
-            { text: 'Token', link: '/router/tokenizer/' },
-            { text: 'Router Matcher', link: '/router/matcher/' }
-          ]
-        }
-      ],
+      '/router/': router,
       '/core/': core
     }
   },
