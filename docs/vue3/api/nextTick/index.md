@@ -29,4 +29,4 @@ const app = createApp({
 
 <demo1 />
 
-<<< docs/api/nextTick/demos/demo1.vue
+<<< @/vue3/api/nextTick/demos/demo1.vue

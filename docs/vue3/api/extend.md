@@ -10,14 +10,14 @@
 
 ```js
 const Name = Vue.extend({
-  template: "<div>{{name}}</div>",
+  template: '<div>{{name}}</div>',
   data: function() {
     return {
-      name: "jack"
-    };
+      name: 'jack'
+    }
   }
-});
-new Name().$mount("#app");
+})
+new Name().$mount('#app')
 ```
 
 ```html
@@ -34,14 +34,14 @@ new Name().$mount("#app");
     <div id="app"></div>
     <script type="text/javascript">
       const Name = Vue.extend({
-        template: "<div>{{name}}</div>",
+        template: '<div>{{name}}</div>',
         data: function() {
           return {
-            name: "jack"
-          };
+            name: 'jack'
+          }
         }
-      });
-      new Name().$mount("#app");
+      })
+      new Name().$mount('#app')
     </script>
   </body>
 </html>
