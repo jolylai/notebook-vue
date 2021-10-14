@@ -44,3 +44,16 @@ const vnode = {
   shapeFlag: getShapeFlag(type)
 }
 ```
+
+## Hooks
+
+```ts
+const hooks: Array<keyof Module> = [
+  'create',
+  'update',
+  'remove',
+  'destroy',
+  'pre',
+  'post'
+]
+```
