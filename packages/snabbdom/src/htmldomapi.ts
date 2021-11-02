@@ -11,13 +11,16 @@ export interface DOMAPI {
   appendChild: (node: Node, child: Node) => void
   getTextContent: (node: Node) => string | null
   setTextContent: (node: Node, text: string | null) => void
+  parentNode: (node: Node) => Node | null
+  removeChild: (node: Node, child: Node) => void
+  nextSibling: (node: Node) => Node | null
 }
 
 function tagName(el: Element): string {
   return el.tagName
 }
 
-function createElement(tagName: any, options?: ElementCreationOptions) {
+function createElement(tagName: any, options?: ElementCreationOptions): Node {
   return document.createElement(tagName, options)
 }
 
@@ -49,6 +52,17 @@ function getTextContent(node: Node): string | null {
   return node.textContent
 }
 
+function parentNode(node: Node): Node | null {
+  return node.parentNode
+}
+
+function removeChild(node: Node, child: Node) {
+  node.removeChild(child)
+}
+
+function nextSibling(node: Node): Node | null {
+  return node.nextSibling
+}
 export const htmlDomApi: DOMAPI = {
   tagName,
   createComment,
@@ -57,5 +71,8 @@ export const htmlDomApi: DOMAPI = {
   appendChild,
   insertBefore,
   getTextContent,
-  setTextContent
+  setTextContent,
+  parentNode,
+  removeChild,
+  nextSibling
 }

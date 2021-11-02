@@ -1,5 +1,3 @@
-export const isArray = Array.isArray
-
 export function isPrimitive(s: any): s is string | number {
   return (
     typeof s === 'string' ||
@@ -7,4 +5,8 @@ export function isPrimitive(s: any): s is string | number {
     s instanceof String ||
     s instanceof Number
   )
+}
+
+export function isArray(s: any): boolean {
+  return Array.isArray(s)
 }

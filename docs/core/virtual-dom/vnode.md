@@ -1,4 +1,20 @@
-## 什么是虚拟 DOM
+## 前言
+
+所谓虚拟 DOM，就是用一个 JS 对象来描述一个 DOM 节点，像如下示例：
+
+```js
+<div class="a" id="b">我是内容</div>
+
+{
+  tag:'div',        // 元素标签
+  attrs:{           // 属性
+    class:'a',
+    id:'b'
+  },
+  text:'我是内容',  // 文本内容
+  children:[]       // 子元素
+}
+```
 
 ## VNode 的类型
 

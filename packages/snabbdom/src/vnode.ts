@@ -1,4 +1,13 @@
-type Key = string | number | symbol
+import { Hooks } from './hooks'
+
+export type Key = string | number | symbol
+
+export interface VNodeData {
+  // props?:  Props
+  hook: Hooks
+  is?: string
+  [key: string]: any
+}
 
 export interface VNode {
   sel: string | undefined
@@ -9,9 +18,16 @@ export interface VNode {
   key: Key | undefined
 }
 
-export interface VNodeData {
-  // props?: Props
-  [key: string]: any
+export function sameVnode(vnode1: VNode, vnode2: VNode): boolean {
+  const isSameKey = vnode1.key === vnode2.key
+  const isSameIs = vnode1.data?.is === vnode2.data?.is
+  const isSameSel = vnode1.sel === vnode2.sel
+
+  return isSameKey && isSameIs && isSameSel
+}
+
+export function isVnode(vnode: any): vnode is VNode {
+  return vnode.sel !== undefined
 }
 
 export function vnode(
@@ -22,5 +38,5 @@ export function vnode(
   elm: Element | Text | undefined
 ): VNode {
   const key = data === undefined ? undefined : data.key
-  return { sel, data, children, text, elm, key }
+  return { sel, data, children, elm, text, key }
 }
