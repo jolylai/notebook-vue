@@ -12,10 +12,28 @@ type ArraysOf<T> = {
 
 type ModuleHooks = ArraysOf<Required<Module>>
 
+type KeyToIndexMap = { [key: string]: number }
+
 const emptyNode = vnode('', {}, [], undefined, undefined)
 
-function isUnDef(s: any): boolean {
+function isUndef(s: any): boolean {
   return s === undefined
+}
+
+function createKeyToOldIdx(
+  children: VNode[],
+  beginIdx: number,
+  endIdx: number
+) {
+  const map: KeyToIndexMap = {}
+
+  for (let i = beginIdx; i <= endIdx; ++i) {
+    const key = children[i]?.key
+    if (key !== undefined) {
+      map[key as string] = i
+    }
+  }
+  return map
 }
 
 type NonUndefined<T> = T extends undefined ? never : any
@@ -114,7 +132,7 @@ export function init(modules: Array<Partial<Module>>) {
 
     if (sel === '!') {
       // 注释节点
-      if (isUnDef(vnode.text)) {
+      if (isUndef(vnode.text)) {
         vnode.text = ''
       }
       vnode.elm = api.createComment(vnode.text)
@@ -217,6 +235,104 @@ export function init(modules: Array<Partial<Module>>) {
     }
   }
 
+  function updateChildren(
+    parentElm: Node,
+    oldCh: VNode[],
+    newCh: VNode[],
+    insertedVnodeQueue: VNodeQueue
+  ) {
+    let oldStartIdx = 0
+    let newStartIdx = 0
+    let oldEndIdx = oldCh.length - 1
+    let oldStartVnode = oldCh[0]
+    let oldEndVnode = oldCh[oldEndIdx]
+    let newEndIdx = newCh.length - 1
+    let newStartVnode = newCh[0]
+    let newEndVnode = newCh[newEndIdx]
+    let oldKeyToIdx: KeyToIndexMap | undefined
+    let idxInOld: number
+    let elmToMove: VNode
+    let before: any
+
+    while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
+      if (oldStartVnode == null) {
+        oldStartVnode = oldCh[++oldStartIdx] // Vnode might have been moved left
+      } else if (oldEndVnode == null) {
+        oldEndVnode = oldCh[--oldEndIdx]
+      } else if (newStartVnode == null) {
+        newStartVnode = newCh[++newStartIdx]
+      } else if (newEndVnode == null) {
+        newEndVnode = newCh[--newEndIdx]
+      } else if (sameVnode(oldStartVnode, newStartVnode)) {
+        patchVnode(oldStartVnode, newStartVnode, insertedVnodeQueue)
+        oldStartVnode = oldCh[++oldStartIdx]
+        newStartVnode = newCh[++newStartIdx]
+      } else if (sameVnode(oldEndVnode, newEndVnode)) {
+        patchVnode(oldEndVnode, newEndVnode, insertedVnodeQueue)
+        oldEndVnode = oldCh[--oldEndIdx]
+        newEndVnode = newCh[--newEndIdx]
+      } else if (sameVnode(oldStartVnode, newEndVnode)) {
+        // Vnode moved right
+        patchVnode(oldStartVnode, newEndVnode, insertedVnodeQueue)
+        api.insertBefore(
+          parentElm,
+          oldStartVnode.elm!,
+          api.nextSibling(oldEndVnode.elm!)
+        )
+        oldStartVnode = oldCh[++oldStartIdx]
+        newEndVnode = newCh[--newEndIdx]
+      } else if (sameVnode(oldEndVnode, newStartVnode)) {
+        // Vnode moved left
+        patchVnode(oldEndVnode, newStartVnode, insertedVnodeQueue)
+        api.insertBefore(parentElm, oldEndVnode.elm!, oldStartVnode.elm!)
+        oldEndVnode = oldCh[--oldEndIdx]
+        newStartVnode = newCh[++newStartIdx]
+      } else {
+        if (oldKeyToIdx === undefined) {
+          oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx)
+        }
+        idxInOld = oldKeyToIdx[newStartVnode.key as string]
+        if (isUndef(idxInOld)) {
+          // New element
+          api.insertBefore(
+            parentElm,
+            createElm(newStartVnode, insertedVnodeQueue),
+            oldStartVnode.elm!
+          )
+        } else {
+          elmToMove = oldCh[idxInOld]
+          if (elmToMove.sel !== newStartVnode.sel) {
+            api.insertBefore(
+              parentElm,
+              createElm(newStartVnode, insertedVnodeQueue),
+              oldStartVnode.elm!
+            )
+          } else {
+            patchVnode(elmToMove, newStartVnode, insertedVnodeQueue)
+            oldCh[idxInOld] = undefined as any
+            api.insertBefore(parentElm, elmToMove.elm!, oldStartVnode.elm!)
+          }
+        }
+        newStartVnode = newCh[++newStartIdx]
+      }
+    }
+    if (oldStartIdx <= oldEndIdx || newStartIdx <= newEndIdx) {
+      if (oldStartIdx > oldEndIdx) {
+        before = newCh[newEndIdx + 1] == null ? null : newCh[newEndIdx + 1].elm
+        addVnodes(
+          parentElm,
+          before,
+          newCh,
+          newStartIdx,
+          newEndIdx,
+          insertedVnodeQueue
+        )
+      } else {
+        removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx)
+      }
+    }
+  }
+
   // 更新 VNode
   function patchVnode(
     oldVnode: VNode,
@@ -238,7 +354,7 @@ export function init(modules: Array<Partial<Module>>) {
       }
     }
 
-    if (isUnDef(vnode.text)) {
+    if (isUndef(vnode.text)) {
       // 非文本节点
       if (isDef(oldCh) && isDef(ch)) {
         // 更新children

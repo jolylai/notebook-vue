@@ -74,7 +74,7 @@ const core = [
     text: '虚拟DOM',
     collapsable: false,
     children: [
-      { text: 'VNode', link: '/core/virtual-dom/vnode' },
+      { text: 'Virtual Node', link: '/core/virtual-dom/vnode' },
       { text: 'Diff', link: '/core/virtual-dom/diff' }
     ]
   }
@@ -129,7 +129,7 @@ module.exports = {
         activeMatch: '^/vue-route/'
       },
       {
-        text: '源码',
+        text: 'Vue 源码',
         link: '/core/virtual-dom/vnode',
         activeMatch: '^/core/'
       }
