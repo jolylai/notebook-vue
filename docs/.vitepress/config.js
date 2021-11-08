@@ -65,11 +65,14 @@ const core = [
   //   collapsable: false,
   //   children: ['/core/reactivity/reactive']
   // },
-  // {
-  //   title: '模板编译',
-  //   collapsable: false,
-  //   children: ['/core/template/overview', '/core/template/slot']
-  // },
+  {
+    text: '模板编译',
+    collapsable: false,
+    children: [
+      { text: '编译原理', link: '/core/template/overview' },
+      { text: 'HTML 解析器', link: '/core/template/htmlParser' }
+    ]
+  },
   {
     text: '虚拟DOM',
     collapsable: false,
