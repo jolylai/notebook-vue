@@ -1,6 +1,5 @@
 import fs from 'fs'
 import path from 'path'
-;/<([a-zA-Z_][\w\-\.]*)/g
 
 const comment = /^<!\--/
 const conditionalComment = /^<!\[/
@@ -60,19 +59,31 @@ export function parseHTML(html, options) {
         return match
       }
     }
-
-    if (options.start) {
-      options.start(tagName, attrs, unary, match.start, match.end)
-    }
   }
 
-  function handleStartTag(match) {}
+  function handleStartTag(match) {
+    const l = match.attrs.length
+    const attrs = new Array(l)
+
+    for (let i = 0; i < l; i++) {
+      const args = match.attrs[i]
+      const value = args[3] || args[4] || args[5] || ''
+
+      attrs[i] = {
+        name: args[1],
+        value: value
+      }
+    }
+
+    options.start(match.tagName, attrs, match.unary, match.start, match.end)
+  }
 
   while (html) {
+    // console.log('html: ', html)
     let textEnd = html.indexOf('<')
 
     if (textEnd === 0) {
-      // 注释节点
+      // 解析注释
       if (comment.test(html)) {
         const commentEnd = html.indexOf('-->')
 
@@ -83,7 +94,7 @@ export function parseHTML(html, options) {
         }
       }
 
-      // 条件注释
+      // 解析条件注释
       if (conditionalComment.test(html)) {
         const conditionalEnd = html.indexOf(']>')
 
@@ -93,7 +104,7 @@ export function parseHTML(html, options) {
         }
       }
 
-      // doctype
+      // 解析 Doctype
       const doctypeMatch = html.match(doctype)
       if (doctypeMatch) {
         advance(doctypeMatch[0].length)
@@ -101,43 +112,53 @@ export function parseHTML(html, options) {
         continue
       }
 
-      // end Tag
+      // 解析结束标签
       const endTagMatch = html.match(endTag)
       if (endTagMatch) {
         advance(endTagMatch[0].length)
+        if (options.end) {
+          options.end(endTagMatch[0], index, endTagMatch[0].length)
+        }
         continue
       }
 
-      // start tag
+      // 解析开始标签
       const startTagMatch = parseStartTag()
       if (startTagMatch) {
-        handleStartTag()
+        handleStartTag(startTagMatch)
         continue
       }
     }
-    advance(1)
 
     // 文本节点
-    // let text, rest, next
-    // if (textEnd >= 0) {
-    //   rest = html.substring(textEnd)
-    //   while (
-    //     !endTag.test(rest) &&
-    //     !startTagOpen.test(rest) &&
-    //     !comment.test(rest) &&
-    //     !conditionalComment.test(rest)
-    //   ) {
-    //     next = rest.indexOf('<')
-    //     if (next < 0) break
-    //     textEnd += next
-    //     rest = html.slice(textEnd)
-    //   }
-    //   text = html.substring(0, textEnd)
-    // }
+    let text, rest, next
 
-    // if (text) {
-    //   advance(text.length)
-    // }
+    if (textEnd >= 0) {
+      rest = html.substring(textEnd)
+      while (
+        !endTag.test(rest) &&
+        !startTagOpen.test(rest) &&
+        !comment.test(rest) &&
+        !conditionalComment.test(rest)
+      ) {
+        next = rest.indexOf('<')
+        if (next < 0) break
+        textEnd += next
+        rest = html.slice(textEnd)
+      }
+      text = html.substring(0, textEnd)
+    }
+
+    if (text) {
+      console.log('text: ', typeof text, text.length)
+      advance(text.length)
+    }
+
+    if (options.chars && text) {
+      options.chars(text, index - text.length, index)
+      continue
+    }
+    advance(1)
   }
 }
 
@@ -148,12 +169,18 @@ const template = fs
 //
 parseHTML(template, {
   start(tag, attrs, unary) {
-    console.log('tag: ', tag)
+    // console.log('start: ', { tag, attrs, unary })
   },
   // 当解析到结束标签时，调用该函数
-  end() {},
+  end(tag, start, end) {
+    // console.log('end', { tag, start, end })
+  },
   // 当解析到文本时，调用该函数
-  chars(text) {},
+  chars(text, start, end) {
+    !/\s/.test(text) && console.log('chars', { text, start, end })
+  },
   // 当解析到注释时，调用该函数
-  comment(text) {}
+  comment(text) {
+    // console.log('comment: ', text)
+  }
 })
