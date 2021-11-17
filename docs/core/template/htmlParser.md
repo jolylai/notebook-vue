@@ -1,3 +1,39 @@
+## 解析上下文
+
+创建解析上下文
+
+```js
+function createParserContext(content, rawOptions) {
+  const options = extend({}, defaultParserOptions, rawOptions)
+
+  return {
+    options,
+    column: 1,
+    line: 1,
+    offset: 0,
+    originalSource: content,
+    source: content,
+    inPre: false,
+    inVPre: false,
+    onWarn: options.onWarn
+  }
+}
+```
+
+节点类型
+
+```ts
+export const enum NodeTypes {
+  ROOT,
+  ELEMENT,
+  TEXT,
+  COMMENT,
+  SIMPLE_EXPRESSION,
+  INTERPOLATION,
+  ATTRIBUTE,
+  DIRECTIVE,
+```
+
 ## 解析不同的内容
 
 - 文本，例如“难凉热血”
