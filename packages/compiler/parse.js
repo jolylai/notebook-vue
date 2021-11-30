@@ -1,6 +1,5 @@
 const fs = require('fs')
 const path = require('path')
-console.log(__dirname)
 
 const extend = Object.assign
 
@@ -9,11 +8,12 @@ const startsWidth = (source, searchString) => {
 }
 
 const defaultParserOptions = {
-  delimiters: [`{{`, `}}`]
+  delimiters: [`{{`, `}}`],
   // getNamespace: () => Namespaces.HTML,
   // getTextMode: () => TextModes.DATA,
   // isVoidTag: NO,
-  // isPreTag: NO,
+  // 是否 <pre> tag
+  isPreTag: 0
   // isCustomElement: NO,
   // decodeEntities: (rawText: string): string =>
   //   rawText.replace(decodeRE, (_, p1) => decodeMap[p1]),
@@ -88,6 +88,18 @@ function advancePositionWithMutation(
   return pos
 }
 
+/**
+ * 去除头部空格
+ * @param {Object} context
+ */
+function advanceSpaces(context) {
+  const match = /^[\t\r\n\f]+/.exec(context.source)
+
+  if (match) {
+    advanceBy(context, match[0].length)
+  }
+}
+
 function getSelection(context, start, end) {
   end = end || getCursor(context)
   return {
@@ -96,6 +108,8 @@ function getSelection(context, start, end) {
     source: context.originalSource.slice(start.offset, end.offset)
   }
 }
+
+function parseComment(context) {}
 
 function parseBogusComment(context) {
   const start = getCursor(context)
@@ -119,17 +133,102 @@ function parseBogusComment(context) {
   }
 }
 
-function parseTag(context) {
-  const match = /^<\/?([a-z][^\t\r\n\f />]*)/i.exec(context.source)
-  console.log('match: ', match)
+/**
+ * 解析标签 <div id="id">div</div>
+ * @param {Object} context
+ * @param {Number} type 0： 开始标签  1：结束标签
+ * @param {Element[]}} parent 父节点
+ */
+function parseTag(context, type, parent) {
+  const start = getCursor(context)
+  // </div>
+  const match = /<\/?([a-z][^\t\r\n\f />]*)/i.exec(context.source)
+
+  // 标签名
   const tag = match[1]
   advanceBy(context, match[0].length)
+
+  const cursor = getCursor(context)
+  const currentSource = context.source
+
+  const props = parseAttributes(context)
 }
 
-function parseElement(context, type) {
+/**
+ * 解析标签属性
+ * @param {Object} context
+ * @param {Set} nameSet 属性名集合
+ */
+function parseAttribute(context, nameSet) {
   const start = getCursor(context)
-  console.log('start: ', start)
-  parseTag(context, 0)
+  console.log('context: ', context.source)
+  const match = /[^\t\r\n\f />][^\t\r\n\f />=]*/.exec(context.source)
+  // 属性名称
+  const name = match[0]
+  console.log('name: ', name)
+  nameSet.add(name)
+
+  advanceBy(context, name.length)
+
+  let value
+
+  if (/^[\t\r\n\f ]*=/.test(context.source)) {
+    advanceSpaces(context)
+    // 跳过 =
+    advanceBy(context, 1)
+    // 去除等号后的空格
+    advanceSpaces(context)
+
+    value = parseAttributeValue(context)
+    console.log('value: ', value)
+  }
+
+  const loc = getSelection(context, start)
+  console.log('loc: ', loc)
+}
+
+/**
+ * 解析标签属性值
+ * @param {Object} context
+ */
+function parseAttributeValue(context) {
+  const start = getCursor(context)
+  let content
+
+  const quote = context.source[0]
+  const isQuoted = quote === `"` || quote === `'`
+
+  if (isQuoted) {
+    advanceBy(context, 1)
+    const endIndex = context.source.indexOf(quote)
+    if (endIndex === -1) {
+    } else {
+      content = parseTextData()
+    }
+  }
+
+  return { context, isQuoted, loc: getSelection(context, start) }
+}
+
+function parseAttributes(context, type) {
+  const props = []
+  const attributeNames = new Set()
+
+  const attr = parseAttribute(context, attributeNames)
+}
+
+/**
+ * 解析元素
+ * @param {Object} context
+ * @param {Element []} ancestors 祖先元素
+ */
+function parseElement(context, ancestors) {
+  const start = getCursor(context)
+
+  // 父节点
+  const parent = ancestors[ancestors.length - 1]
+  // 开始标签
+  const element = parseTag(context, 0)
 }
 
 // 解析插槽值
@@ -153,30 +252,38 @@ function parseTextData(context, length) {
 }
 
 function parse(content, options) {
+  // 创建解析上下文
   const context = createParserContext(content, options)
-  console.log('context: ', context)
+  //
 
   let node
 
-  if (startsWidth(context.source, '<!DOCTYPE')) {
-    node = parseBogusComment(context)
-  } else if (startsWidth(context.source, '<!--')) {
-  } else if (startsWidth(context.source, context.options.delimiters[0])) {
-    parseInterpolation(context)
-  } else if (/[a-z]/i.test(context.source[1])) {
-    node = parseElement(context)
+  while (context.source) {
+    if (startsWidth(context.source, '<!DOCTYPE')) {
+      node = parseBogusComment(context)
+
+      continue
+    }
+    //  else if (startsWidth(context.source, '<!--')) {
+    //   parseComment(context)
+    //   continue
+    // } else if (startsWidth(context.source, context.options.delimiters[0])) {
+    //   parseInterpolation(context)
+    //   continue
+    // }
+    else if (/[a-z]/i.test(context.source[1])) {
+      node = parseElement(context, [])
+      continue
+    }
+    //
+    break
   }
 
-  console.log('node: ', node)
-
-  // console.log(context)
+  //
 }
 
-// let template = `<div id="counter"> Counter: {{ counter }}</div>`
+const templatePath = path.resolve(__dirname, './index.html')
 
-// template = fs
-//   .readFileSync(path.resolve(__dirname, './index.html'))
-//   .toString()
-//   .replace(/\n/g, '')
+let template = fs.readFileSync(templatePath, 'utf-8').replace(/\n/g, '')
 
-parse('<div id="1">element</div>', {})
+parse(template, {})
