@@ -98,17 +98,6 @@ const core = [
   // }
 ]
 
-const router = [
-  {
-    text: '配置器',
-    collapsable: false,
-    children: [
-      { text: 'Token', link: '/router/tokenizer/' },
-      { text: 'Router Matcher', link: '/router/matcher/' }
-    ]
-  }
-]
-
 module.exports = {
   title: 'Vue',
   description: 'Vue 学习笔记',
@@ -127,11 +116,6 @@ module.exports = {
         activeMatch: '^/vue3/'
       },
       {
-        text: 'Vue Router',
-        link: '/router/tokenizer',
-        activeMatch: '^/vue-route/'
-      },
-      {
         text: 'Vue 源码',
         link: '/core/virtual-dom/vnode',
         activeMatch: '^/core/'
@@ -139,7 +123,6 @@ module.exports = {
     ],
     sidebar: {
       '/vue3/': vue3,
-      '/router/': router,
       '/core/': core
     }
   },
