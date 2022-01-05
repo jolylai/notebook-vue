@@ -60,11 +60,11 @@ const core = [
     collapsable: false,
     children: [{ text: '快速开始', link: '/core/getting-start' }]
   },
-  // {
-  //   title: '数据驱动',
-  //   collapsable: false,
-  //   children: ['/core/reactivity/reactive']
-  // },
+  {
+    text: '数据驱动',
+    collapsable: false,
+    children: ['/core/reactivity/reactive']
+  },
   {
     text: '模板编译',
     collapsable: false,
