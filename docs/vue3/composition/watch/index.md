@@ -27,6 +27,36 @@ watch(count, (count, prevCount) => {
 })
 ```
 
+直接侦听数组
+
+```js
+const array = reactive([])
+
+watch(array, (count, prevCount) => {
+  /* ... */
+})
+
+array.push(1)
+```
+
+computed ref
+
+```js
+const count = ref(0)
+const plus = computed(() => count.value + 1)
+
+watch(plus, (count, prevCount) => {
+  dummy = [count, prevCount]
+  // assert types
+  count + 1
+  if (prevCount) {
+    prevCount + 1
+  }
+})
+
+count.value++
+```
+
 ## 侦听多个源
 
 侦听多个 ref

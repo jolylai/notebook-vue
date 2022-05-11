@@ -1,4 +1,4 @@
-// import { mutableHandlers } from './baseHandlers'
+import { mutableHandlers } from './baseHandlers'
 
 export const enum ReactiveFlags {
   SKIP = '__v_skip',
@@ -16,21 +16,32 @@ export interface Target {
 
 const reactiveMap = new WeakMap<Target, any>()
 
-export function reactive<T extends object>(target: T): T {
-  const proxy = new Proxy(target, {
-    get(target: Target, key: string, receiver: object) {
-      const res = Reflect.get(target, key, receiver)
-
-      return res
-    },
-    set(target: T, key: string, value: unknown, receiver: object) {
-      const res = Reflect.set(target, key, value, receiver)
-
-      return res
-    }
-  })
+export function reactive<T extends object>(target: object) {
+  const proxy = new Proxy(target, mutableHandlers)
 
   reactiveMap.set(target, proxy)
 
   return proxy
 }
+
+export function isReactive(value: unknown): boolean {
+  if (isReadonly(value)) {
+    return isReactive((value as Target)[ReactiveFlags.RAW])
+  }
+  return !!(value && (value as Target)[ReactiveFlags.IS_REACTIVE])
+}
+
+export function isReadonly(value: unknown): boolean {
+  return !!(value && (value as Target)[ReactiveFlags.IS_READONLY])
+}
+
+export function toRaw<T>(observed: T): T {
+  const raw = observed && (observed as Target)[ReactiveFlags.RAW]
+  return raw ? toRaw(raw) : observed
+}
+
+export const isObject = (val: unknown): val is Record<any, any> =>
+  val !== null && typeof val === 'object'
+
+export const toReactive = <T extends unknown>(value: T): T =>
+  isObject(value) ? reactive(value) : value

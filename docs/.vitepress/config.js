@@ -61,9 +61,18 @@ const core = [
     children: [{ text: '快速开始', link: '/core/getting-start' }]
   },
   {
-    text: '数据驱动',
+    text: '响应式系统',
     collapsable: false,
-    children: ['/core/reactivity/reactive']
+    children: [
+      {
+        text: 'reactive',
+        link: '/core/reactivity/reactive'
+      },
+      {
+        text: 'effect',
+        link: '/core/reactivity/effect'
+      }
+    ]
   },
   {
     text: '模板编译',
@@ -72,15 +81,15 @@ const core = [
       { text: '编译原理', link: '/core/template/overview' },
       { text: 'HTML 解析器', link: '/core/template/htmlParser' }
     ]
-  },
-  {
-    text: '虚拟DOM',
-    collapsable: false,
-    children: [
-      { text: 'Virtual Node', link: '/core/virtual-dom/vnode' },
-      { text: 'Diff', link: '/core/virtual-dom/diff' }
-    ]
   }
+  // {
+  //   text: '虚拟DOM',
+  //   collapsable: false,
+  //   children: [
+  //     { text: 'Virtual Node', link: '/core/virtual-dom/vnode' },
+  //     { text: 'Diff', link: '/core/virtual-dom/diff' }
+  //   ]
+  // }
   // {
   //   title: '实例方法',
   //   collapsable: false,
@@ -117,7 +126,7 @@ module.exports = {
       },
       {
         text: 'Vue 源码',
-        link: '/core/virtual-dom/vnode',
+        link: '/core/reactivity/reactive',
         activeMatch: '^/core/'
       }
     ],

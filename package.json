@@ -6,7 +6,7 @@
     "start": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "commit": "git add . && git cz && git push",
-    "test": "jest",
+    "test": "vitest",
     "docs:deploy": "gh-pages -d docs-dist",
     "deploy": "npm run docs:build && npm run docs:deploy",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\""
@@ -33,6 +33,7 @@
     "prettier": "^1.19.1",
     "typescript": "^4.5.4",
     "vitepress": "^0.17.0",
+    "vitest": "^0.12.4",
     "yorkie": "^2.0.0"
   },
   "dependencies": {

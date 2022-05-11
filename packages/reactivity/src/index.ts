@@ -1,2 +1,2 @@
-export { reactive } from './reactivity'
+export { reactive, isReactive, isReadonly } from './reactivity'
 export { effect } from './effect'
