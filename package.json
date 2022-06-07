@@ -7,6 +7,7 @@
     "docs:build": "vitepress build docs",
     "commit": "git add . && git cz && git push",
     "test": "vitest",
+    "test:watch": "vitest -w",
     "docs:deploy": "gh-pages -d docs-dist",
     "deploy": "npm run docs:build && npm run docs:deploy",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\""
@@ -24,16 +25,11 @@
     ]
   },
   "devDependencies": {
-    "@sucrase/jest-plugin": "^2.1.1",
-    "@vue/test-utils": "^1.2.2",
-    "esm": "^3.2.25",
-    "gh-pages": "^3.0.0",
-    "jest": "^27.0.6",
     "lint-staged": "^10.0.7",
     "prettier": "^1.19.1",
     "typescript": "^4.5.4",
     "vitepress": "^0.17.0",
-    "vitest": "^0.12.4",
+    "vitest": "^0.14.1",
     "yorkie": "^2.0.0"
   },
   "dependencies": {

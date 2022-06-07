@@ -1,9 +1,15 @@
 enum State {
+  // 初始状态
   Initial,
+  // 标签开始状态
   TagOpen,
+  // 标签名称状态
   TagName,
+  // 文本状态
   Text,
+  // 标签结束状态
   TagEnd,
+  // 标签闭合状态
   TagEndName
 }
 
@@ -16,13 +22,14 @@ type Token = {
 const charReg = /^[a-zA-Z]$/
 const isChar = (char: string) => charReg.test(char)
 
-export function tokenized(template: string) {
+function tokenize(template: string): Token[] {
   let currentState = State.Initial
   const tokens: Token[] = []
   const chars: string[] = []
 
   while (template) {
     const char = template[0]
+
     switch (currentState) {
       case State.Initial:
         if (char === '<') {
@@ -53,4 +60,4 @@ export function tokenized(template: string) {
   return tokens
 }
 
-export function parse() {}
+export default tokenize

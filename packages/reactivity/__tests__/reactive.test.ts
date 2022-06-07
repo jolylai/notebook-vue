@@ -1,3 +1,5 @@
+import { describe, test, expect } from 'vitest'
+
 import { reactive, isReactive } from '../src'
 
 describe('reactivity/reactive', () => {
