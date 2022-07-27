@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest'
 import parse from '../src/parse'
+import tokenize from '../src/tokenize'
 
 describe('parse', () => {
   test('parse', () => {
@@ -17,6 +18,7 @@ describe('parse', () => {
       { type: 'tagEnd', name: 'p' }, // p结束标签节点
       { type: 'tagEnd', name: 'div' } // div结束标签节点
     ]
-    expect(parse(template)).toEqual(templateAst)
+
+    expect(parse(tokenize(template))).toEqual(templateAst)
   })
 })

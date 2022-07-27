@@ -13,7 +13,7 @@ enum State {
   TagEndName
 }
 
-type Token = {
+export type Token = {
   type: 'tag' | 'text' | 'tagEnd'
   name?: string
   content?: string
