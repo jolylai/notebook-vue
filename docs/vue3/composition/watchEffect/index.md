@@ -2,10 +2,10 @@
 
 立即执行传入的一个函数，同时响应式追踪其依赖，并在其依赖变更时重新运行该函数。
 
-<script setup>
+<!-- <script setup>
   import Demo1 from './demos/demo1.vue'
   import Demo2 from './demos/demo2.vue'
-</script>
+</script> -->
 
 ## 停止侦听
 
@@ -29,12 +29,12 @@ stop()
 - 副作用即将重新执行时
 - 侦听器被停止 (如果在 setup() 或生命周期钩子函数中使用了 watchEffect，则在组件卸载时)
 
-<demo1 />
+<!-- <demo1 /> -->
 
-<<< @/guide/composition/watchEffect/demos/demo1.vue
+<!-- <<< @/guide/composition/watchEffect/demos/demo1.vue -->
 
 ## 副作用刷新时机
 
-<demo2 />
+<!-- <demo2 /> -->
 
-<<< @/guide/composition/watchEffect/demos/demo2.vue
+<!-- <<< @/guide/composition/watchEffect/demos/demo2.vue -->

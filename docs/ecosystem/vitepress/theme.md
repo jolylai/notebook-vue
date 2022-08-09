@@ -2,11 +2,15 @@
 
 ## 目录结构
 
-```vue
-theme ├── global-components │ └── xxx.vue ├── components │ └── xxx.vue ├──
-layouts │ ├── Layout.vue (必要的) │ └── 404.vue ├── styles │ ├── index.styl │
-└── palette.styl ├── templates │ ├── dev.html │ └── ssr.html ├── index.js ├──
-enhanceApp.js └── package.json
+```
+.
+├─ docs
+│  ├─ .vitepress
+│  │  ├─ theme
+│  │  │  └─ index.js
+│  │  └─ config.js
+│  └─ index.md
+└─ package.json
 ```
 
 - theme/global-components: 该目录下的组件都会被自动注册为全局组件。想了解更多，请参考 [@vuepress/plugin-register-components(opens new window)](https://github.com/vuejs/vuepress/tree/master/packages/@vuepress/plugin-register-components)。

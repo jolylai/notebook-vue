@@ -77,7 +77,7 @@ function getVue3Sidebar() {
         { text: 'Computed', link: '/vue3/composition/computed/' },
         { text: 'Watch', link: '/vue3/composition/watch/' },
         { text: 'WatchEffect', link: '/vue3/composition/watchEffect/' },
-        { text: 'Provide', link: '/vue3/composition/provide&inject/' }
+        { text: '依赖注入', link: '/vue3/composition/dependency-injection/' }
       ]
     },
     {

@@ -5,15 +5,11 @@
   "version": "1.0.0",
   "scripts": {
     "start": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "commit": "git add . && git cz && git push",
+    "build": "vitepress build docs",
     "test": "vitest",
     "test:watch": "vitest -w",
-    "docs:deploy": "gh-pages -d docs-dist",
-    "deploy": "npm run docs:build && npm run docs:deploy",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\""
   },
-  "main": "dist/index.js",
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
