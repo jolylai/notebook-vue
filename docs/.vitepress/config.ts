@@ -15,16 +15,18 @@ export default defineConfig({
         text: 'Vue 源码',
         link: '/core/reactivity/reactive',
         activeMatch: '^/core/'
+      },
+      {
+        text: '生态系统',
+        link: '/ecosystem/vitepress/quick-start',
+        activeMatch: '^/ecosystem/'
       }
     ],
     sidebar: {
       '/vue3/': getVue3Sidebar(),
-      '/core/': getCoreSidebar()
+      '/core/': getCoreSidebar(),
+      '/ecosystem/': getEcosystemSidebar()
     }
-  },
-
-  markdown: {
-    lineNumbers: false
   }
 })
 
@@ -138,5 +140,18 @@ function getCoreSidebar() {
     //   collapsable: false,
     //   items: ['/core/ecology/vuex']
     // }
+  ]
+}
+
+function getEcosystemSidebar() {
+  return [
+    {
+      text: 'vitepress',
+      items: [
+        { text: '快速开始', link: '/ecosystem/vitepress/quick-start' },
+        { text: '主题', link: '/ecosystem/vitepress/theme' },
+        { text: '插件', link: '/ecosystem/vitepress/plugin' }
+      ]
+    }
   ]
 }

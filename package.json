@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "notebook-vue",
+  "packageManager": "pnpm@7.1.7",
   "version": "1.0.0",
   "scripts": {
     "start": "vitepress dev docs",
