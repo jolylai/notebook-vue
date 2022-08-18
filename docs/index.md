@@ -1,20 +1,20 @@
 ---
 layout: home
 
-title: Pomelo Plus
+title: Vue.js
 titleTemplate: Vite & Vue Powered Static Site Generator
 
 hero:
-  name: Pomelo Plus
+  name: Vue.js
   text: Vite & Vue Powered Static Site Generator
   tagline: Simple, powerful, and performant. Meet the modern SSG framework you've always wanted.
   actions:
     - theme: brand
       text: Get Started
-      link: /guide/getting-started
+      link: /vue3/basic/getting-start
     - theme: alt
       text: View on GitHub
-      link: https://github.com/vuejs/vitepress
+      link: https://github.com/jolylai/notebook-vue
 
 features:
   - title: "Vite: The DX that can't be beat"

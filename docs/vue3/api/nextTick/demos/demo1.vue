@@ -7,11 +7,15 @@
   </ul>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, nextTick } from 'vue'
 import axios from 'axios'
 
-const userList = ref([])
+type User = {
+  email: string
+}
+
+const userList = ref<User[]>([])
 const listRef = ref()
 const loading = ref(false)
 

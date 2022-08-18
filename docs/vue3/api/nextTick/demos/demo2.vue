@@ -3,7 +3,7 @@
   <button @click="increase">increase</button>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, onUpdated } from 'vue'
 
 const countRef = ref()
