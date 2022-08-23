@@ -1,8 +1,6 @@
 # 常用插件
 
-## 自动导入
-
-#### 组件自动导入
+## 组件自动导入
 
 ```shell
 pnpm add unplugin-vue-components -D
@@ -18,6 +16,62 @@ export default defineConfig({
   plugins: [
     Components({
       resolvers: [AntDesignVueResolver()]
+    })
+  ]
+})
+```
+
+## API 自动导入
+
+安装 [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import)
+
+```shell
+pnpm add unplugin-auto-import -D
+```
+
+Vite 项目中自动导入 `vue` 和 `vue-router` 的 API
+
+```ts
+import { defineConfig } from 'vite'
+import AutoImport from 'unplugin-auto-import/vite'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    AutoImport({
+      imports: ['vue', 'vue-router']
+    })
+  ]
+})
+```
+
+导入三方库 API
+
+```ts
+import { defineConfig } from 'vite'
+import AutoImport from 'unplugin-auto-import/vite'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    AutoImport({
+      imports: [
+        {
+          '@vueuse/core': [
+            // named imports
+            // import { useMouse } from '@vueuse/core',
+            'useMouse',
+            // alias
+            // import { useFetch as useMyFetch } from '@vueuse/core',
+            ['useFetch', 'useMyFetch']
+          ],
+          axios: [
+            // default imports
+            // import { default as axios } from 'axios',
+            ['default', 'axios']
+          ]
+        }
+      ]
     })
   ]
 })

@@ -163,6 +163,18 @@ function getEcosystemSidebar() {
         { text: '主题', link: '/ecosystem/vitepress/theme' },
         { text: '插件', link: '/ecosystem/vitepress/plugin' }
       ]
+    },
+    {
+      text: 'Pinia',
+      items: [{ text: '快速开始', link: '/ecosystem/pinia/getting-started' }]
+    },
+    {
+      text: 'Axios',
+      items: [{ text: '快速开始', link: '/ecosystem/axios/getting-started' }]
+    },
+    {
+      text: 'TypeScript',
+      items: [{ text: 'TypeScript', link: '/ecosystem/typescript' }]
     }
   ]
 }
