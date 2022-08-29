@@ -153,6 +153,7 @@ function getEcosystemSidebar() {
       text: 'Vite',
       items: [
         { text: '依赖预构建', link: '/ecosystem/vite/dep-pre-bundling' },
+        { text: '插件', link: '/ecosystem/vite/plugin' },
         { text: '常用插件', link: '/ecosystem/vite/awesome-plugins' }
       ]
     },
@@ -174,7 +175,10 @@ function getEcosystemSidebar() {
     },
     {
       text: 'TypeScript',
-      items: [{ text: 'TypeScript', link: '/ecosystem/typescript' }]
+      items: [
+        { text: '快速开始', link: '/ecosystem/typescript/getting-started' },
+        { text: '工具类', link: '/ecosystem/typescript/utils' }
+      ]
     }
   ]
 }

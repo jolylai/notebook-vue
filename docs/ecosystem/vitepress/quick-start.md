@@ -3,7 +3,7 @@
 ## 安装 vitepress
 
 ```shell
-pnpm add --dev vitepress@latest
+pnpm add -D vitepress@latest
 ```
 
 ## 创建首页

@@ -4,8 +4,8 @@
   "packageManager": "pnpm@7.1.7",
   "version": "1.0.0",
   "scripts": {
-    "start": "vitepress dev docs",
-    "build": "vitepress build docs",
+    "docs:start": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
     "test": "vitest",
     "test:watch": "vitest -w",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\""
