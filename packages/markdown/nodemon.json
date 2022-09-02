@@ -1,0 +1,6 @@
+{
+  "watch": ["src", "README.md"],
+  "ext": "js,ts,json",
+  "ignore": ["src/**/*.spec.ts"],
+  "exec": "esno src/index.ts"
+}

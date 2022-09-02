@@ -162,7 +162,8 @@ function getEcosystemSidebar() {
       items: [
         { text: '快速开始', link: '/ecosystem/vitepress/quick-start' },
         { text: '主题', link: '/ecosystem/vitepress/theme' },
-        { text: '插件', link: '/ecosystem/vitepress/plugin' }
+        { text: '插件', link: '/ecosystem/vitepress/plugin' },
+        { text: 'Markdown', link: '/ecosystem/vitepress/markdown-it' }
       ]
     },
     {
