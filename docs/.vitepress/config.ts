@@ -173,13 +173,6 @@ function getEcosystemSidebar() {
     {
       text: 'Axios',
       items: [{ text: '快速开始', link: '/ecosystem/axios/getting-started' }]
-    },
-    {
-      text: 'TypeScript',
-      items: [
-        { text: '快速开始', link: '/ecosystem/typescript/getting-started' },
-        { text: '工具类', link: '/ecosystem/typescript/utils' }
-      ]
     }
   ]
 }
