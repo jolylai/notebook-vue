@@ -1,8 +1,8 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: 'Vue',
-  description: 'Vue 学习笔记',
+  title: 'Vue3',
+  description: 'Vue3 学习笔记',
   lastUpdated: true,
   themeConfig: {
     nav: [
@@ -33,20 +33,18 @@ export default defineConfig({
 function getVue3Sidebar() {
   return [
     {
-      text: '基础',
+      text: '指引',
       collapsable: false,
-      items: [
-        { text: '快速开始', link: '/vue3/basic/getting-start' },
-        {
-          text: 'Class 与 Style 绑定',
-          link: '/vue3/basic/class-and-style'
-        }
-      ]
+      items: [{ text: '快速开始', link: '/vue3/basic/getting-start' }]
     },
     {
       text: '深入组件',
       collapsable: false,
       items: [
+        {
+          text: 'Class 与 Style 绑定',
+          link: '/vue3/basic/class-and-style'
+        },
         { text: 'Registration', link: '/vue3/component/registration' },
         { text: 'Props', link: '/vue3/component/props' },
         { text: 'Lifecycle', link: '/vue3/component/lifecycle' },
@@ -99,14 +97,9 @@ function getCoreSidebar() {
       text: '响应式系统',
       collapsable: false,
       items: [
-        {
-          text: 'reactive',
-          link: '/core/reactivity/reactive'
-        },
-        {
-          text: 'effect',
-          link: '/core/reactivity/effect'
-        }
+        { text: '快速开始', link: '/core/reactivity/getting-started' },
+        { text: 'reactive', link: '/core/reactivity/reactive' },
+        { text: 'effect', link: '/core/reactivity/effect' }
       ]
     },
     {
@@ -155,6 +148,13 @@ function getEcosystemSidebar() {
         { text: '依赖预构建', link: '/ecosystem/vite/dep-pre-bundling' },
         { text: '插件', link: '/ecosystem/vite/plugin' },
         { text: '常用插件', link: '/ecosystem/vite/awesome-plugins' }
+      ]
+    },
+    {
+      text: 'Vitest',
+      items: [
+        { text: '快速开始', link: '/ecosystem/vitest/getting-started' },
+        { text: '模拟对象', link: '/ecosystem/vitest/mocking' }
       ]
     },
     {

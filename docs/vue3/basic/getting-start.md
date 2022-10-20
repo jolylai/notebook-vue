@@ -2,7 +2,7 @@
 
 - [Vue3](https://coding.imooc.com/class/chapter/472.html#Anchor)
 
-```shell
+```sh
 npm install -g @vue/cli
 # OR
 yarn global add @vue/cli
